@@ -1,0 +1,52 @@
+#include <stdio.h>
+#include <math.h> // Required for the pow function and M_PI (for some systems)
+
+// Define PI if M_PI is not automatically available (common practice)
+#ifndef M_PI
+    #define M_PI 3.14159265358979323846
+#endif
+
+int main() {
+    // Declare variables for radius, height, volume, and surface area
+    // Use 'double' for floating-point calculations for better precision
+    double radius, height, volume, surface_area;
+
+    // --- 1. Get User Input ---
+
+    // Prompt user for the radius
+    printf("Enter the radius (r) of the cylinder: ");
+    // Read the radius input from the user
+    if (scanf("%lf", &radius) != 1 || radius <= 0) {
+        printf("Invalid radius. Please enter a positive number.\n");
+        return 1; // Exit with an error code
+    }
+
+    // Prompt user for the height
+    printf("Enter the height (h) of the cylinder: ");
+    // Read the height input from the user
+    if (scanf("%lf", &height) != 1 || height <= 0) {
+        printf("Invalid height. Please enter a positive number.\n");
+        return 1; // Exit with an error code
+    }
+
+    // --- 2. Perform Calculations ---
+
+    // Formula for Volume: V = pi * r^2 * h
+    // We use M_PI (or the defined M_PI) for the value of pi
+    // pow(radius, 2) calculates r squared
+    volume = M_PI * pow(radius, 2) * height;
+
+    // Formula for Surface Area: SA = 2 * pi * r^2 + 2 * pi * r * h
+    // This can also be written as: SA = 2 * pi * r * (r + h)
+    surface_area = (2 * M_PI * pow(radius, 2)) + (2 * M_PI * radius * height);
+
+    // --- 3. Display Results ---
+
+    printf("\n--- Results ---\n");
+    // Print the calculated volume, formatted to 2 decimal places
+    printf("Volume of the cylinder: %.2lf cubic units\n", volume);
+    // Print the calculated surface area, formatted to 2 decimal places
+    printf("Surface Area of the cylinder: %.2lf square units\n", surface_area);
+
+    return 0; // Indicate successful execution
+}
